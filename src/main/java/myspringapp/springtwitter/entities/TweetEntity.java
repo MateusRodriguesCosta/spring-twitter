@@ -2,6 +2,10 @@ package myspringapp.springtwitter.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 @Builder
 @Getter
@@ -13,12 +17,11 @@ import lombok.*;
 public class TweetEntity {
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tweetSequence")
-    @SequenceGenerator(name = "tweetSequence", sequenceName = "SSD.TWEET_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
     private UserEntity user;
 
     @Column(name = "value")
@@ -33,4 +36,5 @@ public class TweetEntity {
 //    @OneToMany(mappedBy = "tweet", fetch = FetchType.LAZY)
 //    @JoinColumn(name = "tweet_id", nullable = false, insertable = false, updatable = false)
 //    private CommentEntity comments;
+
 }

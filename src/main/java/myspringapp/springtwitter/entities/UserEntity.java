@@ -13,8 +13,7 @@ import lombok.*;
 public class UserEntity {
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
-    @SequenceGenerator(name = "userSequence", sequenceName = "SSD.USER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
 

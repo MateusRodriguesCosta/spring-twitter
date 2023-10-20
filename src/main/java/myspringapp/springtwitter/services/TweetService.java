@@ -3,9 +3,9 @@ package myspringapp.springtwitter.services;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.TweetDTO;
-import myspringapp.springtwitter.dto.UserDTO;
 import myspringapp.springtwitter.mappers.TwitterMapper;
 import myspringapp.springtwitter.repositories.TweetRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,13 +36,13 @@ public class TweetService {
         return twitterMapper.map(tweetsEntity);
     }
 
-    public List<TweetDTO> getTweetsByUserId(String id) {
-        var tweetsEntity = tweetRepository.findAllByUserId(id);
+    public List<TweetDTO> getTweetsByUserId(String id, Pageable pageable) {
+        var tweetsEntity = tweetRepository.findAllByUserId(id, pageable);
         return twitterMapper.map(tweetsEntity);
     }
 
     public List<TweetDTO> getUserFeed(String id) {
-        var tweetsEntity = tweetRepository.findUserFeed(id);
+        var tweetsEntity = tweetRepository.findUserFeed(id, Pageable.unpaged());
         return twitterMapper.map(tweetsEntity);
     }
 

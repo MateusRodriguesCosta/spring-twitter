@@ -13,7 +13,6 @@ import lombok.*;
 public class CommentEntity {
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentSequence")
-    @SequenceGenerator(name = "commentSequence", sequenceName = "SSD.COMMENT_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 }

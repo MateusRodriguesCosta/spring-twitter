@@ -3,7 +3,7 @@ package myspringapp.springtwitter.controller;
 import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.TweetDTO;
 import myspringapp.springtwitter.services.TweetService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +27,8 @@ public class TweetController {
     }
 
     @GetMapping("/user/{id}")
-    public List<TweetDTO> getTweetsByUserId(@PathVariable("id") String id) {
-        return tweetService.getTweetsByUserId(id);
+    public List<TweetDTO> getTweetsByUserId(@PathVariable("id") String id, Pageable pageable) {
+        return tweetService.getTweetsByUserId(id, pageable);
     }
 
     @GetMapping("/user-feed/{id}")
