@@ -1,8 +1,10 @@
 package myspringapp.springtwitter.services;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.TweetDTO;
 import myspringapp.springtwitter.dto.UserDTO;
+import myspringapp.springtwitter.mappers.TwitterMapper;
 import myspringapp.springtwitter.repositories.TweetRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,42 +14,36 @@ import java.util.List;
 @AllArgsConstructor
 public class TweetService {
     private final TweetRepository tweetRepository;
+    private final TwitterMapper twitterMapper;
 
+    @Transactional
     public TweetDTO createTweet(TweetDTO tweet) {
-        TweetDTO tweetEntity = TweetDTO.builder()
-                .user(UserDTO.builder()
-                        .id(tweet.getUser().getId())
-                        .name(tweet.getUser().getName())
-                        .email(tweet.getUser().getEmail())
-                        .password(tweet.getUser().getPassword())
-                        .address(tweet.getUser().getAddress())
-                        .build())
-                .value(tweet.getValue())
-                .date(tweet.getDate())
-                .likes(tweet.getLikes())
-                .build();
-        tweetRepository.save(tweetEntity);
+        tweetRepository.save(twitterMapper.map(tweet));
         return tweet;
     }
 
-    public TweetDTO getTweetById(Long id) {
-        return tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet not found"));
+    public TweetDTO getTweetById(String id) {
+        var tweetEntity = tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet not found"));
+        return twitterMapper.map(tweetEntity);
     }
 
-    public void deleteTweetById(Long id) {
+    public void deleteTweetById(String id) {
         tweetRepository.deleteById(id);
     }
 
     public List<TweetDTO> getAllTweets() {
-        return tweetRepository.findAll();
+        var tweetsEntity = tweetRepository.findAll();
+        return twitterMapper.map(tweetsEntity);
     }
 
-    public List<TweetDTO> getTweetsByUserId(Long id) {
-        return tweetRepository.findByUserId(id);
+    public List<TweetDTO> getTweetsByUserId(String id) {
+        var tweetsEntity = tweetRepository.findAllByUserId(id);
+        return twitterMapper.map(tweetsEntity);
     }
 
-    public List<TweetDTO> getUserFeed(Long id) {
-        return tweetRepository.findUserFeed(id);
+    public List<TweetDTO> getUserFeed(String id) {
+        var tweetsEntity = tweetRepository.findUserFeed(id);
+        return twitterMapper.map(tweetsEntity);
     }
 
 }

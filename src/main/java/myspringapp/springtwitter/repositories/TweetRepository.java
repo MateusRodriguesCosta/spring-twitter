@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TweetRepository extends CrudRepository<TweetEntity, String> {
-    Page<TweetEntity> findAllById(Long id);
+
+    Page<TweetEntity> findAllByUserId(String id);
+
+    Page<TweetEntity> findUserFeed(String id);
 }

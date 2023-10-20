@@ -22,17 +22,17 @@ public class TweetController {
     }
 
     @GetMapping("/{id}")
-    public TweetDTO getTweetById(@PathVariable("id") Long id) {
+    public TweetDTO getTweetById(@PathVariable("id") String id) {
         return tweetService.getTweetById(id);
     }
 
     @GetMapping("/user/{id}")
-    public List<TweetDTO> getTweetsByUserId(@PathVariable("id") Long id) {
+    public List<TweetDTO> getTweetsByUserId(@PathVariable("id") String id) {
         return tweetService.getTweetsByUserId(id);
     }
 
     @GetMapping("/user-feed/{id}")
-    public List<TweetDTO> getUserFeed(@PathVariable("id") Long id) {
+    public List<TweetDTO> getUserFeed(@PathVariable("id") String id) {
         return tweetService.getUserFeed(id);
     }
 
@@ -42,7 +42,7 @@ public class TweetController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTweetById(@PathVariable("id") Long id) {
+    public void deleteTweetById(@PathVariable("id") String id) {
         tweetService.deleteTweetById(id);
     }
 }
