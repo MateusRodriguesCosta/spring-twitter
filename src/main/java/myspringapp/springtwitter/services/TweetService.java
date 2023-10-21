@@ -18,13 +18,13 @@ public class TweetService {
 
     @Transactional
     public TweetDTO createTweet(TweetDTO tweet) {
-        tweetRepository.save(twitterMapper.map(tweet));
+        tweetRepository.save(twitterMapper.toTweetEntity(tweet));
         return tweet;
     }
 
     public TweetDTO getTweetById(String id) {
         var tweetEntity = tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet not found"));
-        return twitterMapper.map(tweetEntity);
+        return twitterMapper.toTweetDTO(tweetEntity);
     }
 
     public void deleteTweetById(String id) {
@@ -33,17 +33,17 @@ public class TweetService {
 
     public List<TweetDTO> getAllTweets() {
         var tweetsEntity = tweetRepository.findAll();
-        return twitterMapper.map(tweetsEntity);
+        return twitterMapper.toTweetDTO(tweetsEntity);
     }
 
     public List<TweetDTO> getTweetsByUserId(String id, Pageable pageable) {
         var tweetsEntity = tweetRepository.findAllByUserId(id, pageable);
-        return twitterMapper.map(tweetsEntity);
+        return twitterMapper.toTweetDTO(tweetsEntity);
     }
 
     public List<TweetDTO> getUserFeed(String id) {
         var tweetsEntity = tweetRepository.findUserFeed(id, Pageable.unpaged());
-        return twitterMapper.map(tweetsEntity);
+        return twitterMapper.toTweetDTO(tweetsEntity);
     }
 
 }

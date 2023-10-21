@@ -1,7 +1,9 @@
 package myspringapp.springtwitter.mappers;
 
 import myspringapp.springtwitter.dto.TweetDTO;
+import myspringapp.springtwitter.dto.UserDTO;
 import myspringapp.springtwitter.entities.TweetEntity;
+import myspringapp.springtwitter.entities.UserEntity;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -15,11 +17,19 @@ import static java.util.stream.Collectors.toList;
 @Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface TwitterMapper {
 
-    TweetDTO map(TweetEntity tweet);
+    TweetDTO toTweetDTO(TweetEntity tweet);
 
-    TweetEntity map(TweetDTO tweet);
+    TweetEntity toTweetEntity(TweetDTO tweet);
 
-    default List<TweetDTO> map(Iterable<TweetEntity> list) {
-        return StreamSupport.stream(list.spliterator(), false).map(this::map).collect(toList());
+    UserDTO toUserDTO(UserEntity user);
+
+    UserEntity toUserEntity(UserDTO user);
+
+    default List<TweetDTO> toTweetDTO(Iterable<TweetEntity> list) {
+        return StreamSupport.stream(list.spliterator(), false).map(this::toTweetDTO).collect(toList());
+    }
+
+    default List<UserDTO> toUserDTO(Iterable<UserEntity> list) {
+        return StreamSupport.stream(list.spliterator(), false).map(this::toUserDTO).collect(toList());
     }
 }
