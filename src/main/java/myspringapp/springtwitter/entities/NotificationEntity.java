@@ -2,6 +2,7 @@ package myspringapp.springtwitter.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import java.util.List;
 
