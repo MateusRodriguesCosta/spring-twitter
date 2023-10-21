@@ -35,7 +35,7 @@ public class TweetEntity {
     @Column(name = "likes")
     private int likes;
 
-    @OneToMany(mappedBy = "tweet", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tweet", fetch = FetchType.EAGER)
     private List<CommentEntity> comments;
 
 

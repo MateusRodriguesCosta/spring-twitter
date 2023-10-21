@@ -8,6 +8,8 @@ import myspringapp.springtwitter.entities.TweetEntity;
 import myspringapp.springtwitter.entities.UserEntity;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.toList;
 
 @Component
-@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
+@Mapper(componentModel = "spring")
 public interface TwitterMapper {
 
     TweetDTO toTweetDTO(TweetEntity tweet);

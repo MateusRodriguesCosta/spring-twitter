@@ -18,8 +18,8 @@ public class UserService {
 
     @Transactional
     public UserDTO createUser(UserDTO user) {
-        userRepository.save(twitterMapper.toUserEntity(user));
-        return user;
+        var _user = userRepository.save(twitterMapper.toUserEntity(user));
+        return twitterMapper.toUserDTO(_user);
     }
 
     public UserDTO getUserById(String id) {

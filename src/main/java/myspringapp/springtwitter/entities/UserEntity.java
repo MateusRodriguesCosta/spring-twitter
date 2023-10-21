@@ -30,7 +30,7 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<TweetEntity> tweets;
 
 }
