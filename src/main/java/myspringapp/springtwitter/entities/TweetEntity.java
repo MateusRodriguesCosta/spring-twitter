@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
@@ -21,10 +23,10 @@ public class TweetEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_d", nullable = false, insertable = false, updatable = false)
     private UserEntity user;
 
-    @Column(name = "value")
+    @Column(name = "_value")
     private String value;
 
     @Column(name = "date")
@@ -33,8 +35,8 @@ public class TweetEntity {
     @Column(name = "likes")
     private int likes;
 
-//    @OneToMany(mappedBy = "tweet", fetch = FetchType.LAZY)
-//    @JoinColumn(name = "tweet_id", nullable = false, insertable = false, updatable = false)
-//    private CommentEntity comments;
+    @OneToMany(mappedBy = "tweet", fetch = FetchType.LAZY)
+    private List<CommentEntity> comments;
+
 
 }
