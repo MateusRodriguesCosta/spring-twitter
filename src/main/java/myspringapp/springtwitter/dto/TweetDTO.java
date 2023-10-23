@@ -13,6 +13,4 @@ public class TweetDTO {
     private String value;
     private String date;
     private int likes;
-    private CommentDTO[] comments;
-
 }

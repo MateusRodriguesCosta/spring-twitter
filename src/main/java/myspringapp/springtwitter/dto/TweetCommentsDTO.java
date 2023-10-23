@@ -7,10 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class TweetCommentsDTO {
     private String id;
-    private String name;
-    private String email;
-    private String password;
-    private String address;
+    private CommentDTO[] comments;
 }

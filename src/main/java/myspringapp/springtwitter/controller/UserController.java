@@ -2,6 +2,8 @@ package myspringapp.springtwitter.controller;
 
 import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.UserDTO;
+import myspringapp.springtwitter.dto.UserNotificationsDTO;
+import myspringapp.springtwitter.dto.UserTweetsDTO;
 import myspringapp.springtwitter.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,16 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/tweets/{id}")
+    public UserTweetsDTO getUserTweetsById(@PathVariable("id") String id) {
+        return userService.getUserTweetsById(id);
+    }
+
+//    @GetMapping("/notifications/{id}")
+//    public UserNotificationsDTO getUserNotificationsById(@PathVariable("id") String id) {
+//        return userService.getUserNotificationsById(id);
+//    }
+
     @PostMapping("/")
     public UserDTO createUser(@RequestBody UserDTO user) {
         return userService.createUser(user);
@@ -33,5 +45,7 @@ public class UserController {
     public void deleteUserById(@PathVariable("id") String id) {
         userService.deleteUserById(id);
     }
+
+
 
 }

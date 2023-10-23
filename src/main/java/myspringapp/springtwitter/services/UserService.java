@@ -3,7 +3,10 @@ package myspringapp.springtwitter.services;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.UserDTO;
-import myspringapp.springtwitter.mappers.TwitterMapper;
+import myspringapp.springtwitter.dto.UserNotificationsDTO;
+import myspringapp.springtwitter.dto.UserTweetsDTO;
+import myspringapp.springtwitter.mappers.TweetMapper;
+import myspringapp.springtwitter.mappers.UserMapper;
 import myspringapp.springtwitter.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +17,27 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final TwitterMapper twitterMapper;
+    private final UserMapper userMapper;
 
     @Transactional
     public UserDTO createUser(UserDTO user) {
-        var _user = userRepository.save(twitterMapper.toUserEntity(user));
-        return twitterMapper.toUserDTO(_user);
+        var _user = userRepository.save(userMapper.toUserEntity(user));
+        return userMapper.toUserDTO(_user);
     }
 
     public UserDTO getUserById(String id) {
         var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return twitterMapper.toUserDTO(userEntity);
+        return userMapper.toUserDTO(userEntity);
+    }
+
+    public UserTweetsDTO getUserTweetsById(String id) {
+        var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserTweetsDTO(userEntity);
+    }
+
+    public UserNotificationsDTO getUserNotificationsById(String id) {
+        var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserNotificationsDTO(userEntity);
     }
 
     public void deleteUserById(String id) {
@@ -33,7 +46,7 @@ public class UserService {
 
     public List<UserDTO> getAllUsers() {
         var usersEntity = userRepository.findAll();
-        return twitterMapper.toUserDTO(usersEntity);
+        return userMapper.toUserDTO(usersEntity);
     }
 
 }
