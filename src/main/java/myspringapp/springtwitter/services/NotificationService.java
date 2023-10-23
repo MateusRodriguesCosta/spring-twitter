@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import myspringapp.springtwitter.dto.NotificationDTO;
 import myspringapp.springtwitter.mappers.NotificationMapper;
 import myspringapp.springtwitter.repositories.NotificationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class NotificationService {
+
     private final NotificationRepository notificationRepository;
     private final NotificationMapper notificationMapper;
 

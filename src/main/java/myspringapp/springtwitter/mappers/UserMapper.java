@@ -1,12 +1,10 @@
 package myspringapp.springtwitter.mappers;
 
-import myspringapp.springtwitter.dto.*;
-import myspringapp.springtwitter.entities.NotificationEntity;
-import myspringapp.springtwitter.entities.TweetEntity;
+import myspringapp.springtwitter.dto.UserDTO;
+import myspringapp.springtwitter.dto.UserNotificationsDTO;
+import myspringapp.springtwitter.dto.UserTweetsDTO;
 import myspringapp.springtwitter.entities.UserEntity;
-import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
-import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,10 +19,8 @@ public interface UserMapper {
 
     UserEntity toUserEntity(UserDTO user);
 
-    @Named("toUserDTO")
     UserDTO toUserDTO(UserEntity user);
 
-    @IterableMapping(qualifiedByName = "toUserDTO")
     List<UserDTO> toUserDTO(Iterable<UserEntity> list);
 
 }
