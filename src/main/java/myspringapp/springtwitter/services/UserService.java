@@ -2,6 +2,7 @@ package myspringapp.springtwitter.services;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import myspringapp.springtwitter.dto.UserCommentsDTO;
 import myspringapp.springtwitter.dto.UserDTO;
 import myspringapp.springtwitter.dto.UserNotificationsDTO;
 import myspringapp.springtwitter.dto.UserTweetsDTO;
@@ -38,6 +39,11 @@ public class UserService {
     public UserNotificationsDTO getUserNotificationsById(String id) {
         var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return userMapper.toUserNotificationsDTO(userEntity);
+    }
+
+    public UserCommentsDTO getUserCommentsById(String id) {
+        var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserCommentsDTO(userEntity);
     }
 
     public void deleteUserById(String id) {

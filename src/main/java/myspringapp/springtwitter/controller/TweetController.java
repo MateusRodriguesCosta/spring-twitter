@@ -1,6 +1,7 @@
 package myspringapp.springtwitter.controller;
 
 import lombok.AllArgsConstructor;
+import myspringapp.springtwitter.dto.TweetCommentsDTO;
 import myspringapp.springtwitter.dto.TweetDTO;
 import myspringapp.springtwitter.services.TweetService;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,6 @@ public class TweetController {
 
     private TweetService tweetService;
 
-
     @GetMapping("/")
     public List<TweetDTO> getAllTweets() {
         return tweetService.getAllTweets();
@@ -29,6 +29,11 @@ public class TweetController {
     @GetMapping("/user/{id}")
     public List<TweetDTO> getTweetsByUserId(@PathVariable("id") String id, Pageable pageable) {
         return tweetService.getTweetsByUserId(id, pageable);
+    }
+
+    @GetMapping("/comments/{id}")
+    public TweetCommentsDTO getTweetCommentsById(@PathVariable("id") String id) {
+        return tweetService.getTweetCommentsById(id);
     }
 
     @GetMapping("/user-feed/{id}")
