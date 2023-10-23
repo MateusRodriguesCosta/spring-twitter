@@ -1,9 +1,11 @@
 package myspringapp.springtwitter.database;
 
 import myspringapp.springtwitter.entities.CommentEntity;
+import myspringapp.springtwitter.entities.NotificationEntity;
 import myspringapp.springtwitter.entities.TweetEntity;
 import myspringapp.springtwitter.entities.UserEntity;
 import myspringapp.springtwitter.repositories.CommentRepository;
+import myspringapp.springtwitter.repositories.NotificationRepository;
 import myspringapp.springtwitter.repositories.TweetRepository;
 import myspringapp.springtwitter.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class DataInitializer {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     private ArrayList<UserEntity> userList = new ArrayList<>();
     private ArrayList<TweetEntity> tweetList = new ArrayList<>();
@@ -65,6 +70,16 @@ public class DataInitializer {
             comment.setValue(dataGenerator.generateRandomString());
             comment.setTweet(tweetList.get(i));
             commentRepository.save(comment);
+        }
+    }
+
+    public void initializeNotifications() {
+        for (int i = 0; i < 10; i++) {
+            NotificationEntity notification = new NotificationEntity();
+            notification.setUser(userList.get(i));
+            notification.setType(dataGenerator.generateRandomString());
+            notification.setDateTime(dataGenerator.generateRandomDateString());
+            notificationRepository.save(notification);
         }
     }
 }

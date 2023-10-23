@@ -15,6 +15,8 @@ public class SpringTwitterApplication {
 		DataInitializer dataInitializer = context.getBean(DataInitializer.class);
 		dataInitializer.initializeUsers();
 		dataInitializer.initializeTweets();
+		dataInitializer.initializeComments();
+		dataInitializer.initializeNotifications();
 	}
 
 }
