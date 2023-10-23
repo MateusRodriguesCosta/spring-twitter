@@ -82,4 +82,23 @@ public class DataInitializer {
             notificationRepository.save(notification);
         }
     }
+
+    public void initializeFollowing() {
+        UserEntity userFollowed;
+        UserEntity userFollowing;
+        for (int i = 0; i < 10; i++) {
+            var followingList = new ArrayList<UserEntity>();
+            for (int j = 0; j < userList.size(); j++) {
+                if (i != j) {
+                    userFollowing = userList.get(j);
+                    followingList.add(userFollowing);
+                }
+            }
+
+            userFollowed = userList.get(i);
+            userFollowed.setFollowing(followingList);
+            userRepository.save(userFollowed);
+
+        }
+    }
 }

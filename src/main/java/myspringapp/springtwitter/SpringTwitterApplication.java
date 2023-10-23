@@ -17,6 +17,7 @@ public class SpringTwitterApplication {
 		dataInitializer.initializeTweets();
 		dataInitializer.initializeComments();
 		dataInitializer.initializeNotifications();
+		dataInitializer.initializeFollowing();
 	}
 
 }

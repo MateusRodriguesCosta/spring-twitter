@@ -1,9 +1,6 @@
 package myspringapp.springtwitter.mappers;
 
-import myspringapp.springtwitter.dto.UserCommentsDTO;
-import myspringapp.springtwitter.dto.UserDTO;
-import myspringapp.springtwitter.dto.UserNotificationsDTO;
-import myspringapp.springtwitter.dto.UserTweetsDTO;
+import myspringapp.springtwitter.dto.*;
 import myspringapp.springtwitter.entities.UserEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -19,6 +16,8 @@ public interface UserMapper {
     UserNotificationsDTO toUserNotificationsDTO(UserEntity user);
 
     UserCommentsDTO toUserCommentsDTO(UserEntity user);
+
+    UserFollowingDTO toUserFollowingDTO(UserEntity user);
 
     UserEntity toUserEntity(UserDTO user);
 

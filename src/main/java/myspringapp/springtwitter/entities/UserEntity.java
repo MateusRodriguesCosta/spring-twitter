@@ -1,6 +1,5 @@
 package myspringapp.springtwitter.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,5 +38,12 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<NotificationEntity> notifications;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "following",
+            joinColumns = @JoinColumn(name = "user_follower_id"),
+            inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private List<UserEntity> following;
 
 }

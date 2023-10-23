@@ -1,10 +1,7 @@
 package myspringapp.springtwitter.controller;
 
 import lombok.AllArgsConstructor;
-import myspringapp.springtwitter.dto.UserCommentsDTO;
-import myspringapp.springtwitter.dto.UserDTO;
-import myspringapp.springtwitter.dto.UserNotificationsDTO;
-import myspringapp.springtwitter.dto.UserTweetsDTO;
+import myspringapp.springtwitter.dto.*;
 import myspringapp.springtwitter.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +37,11 @@ public class UserController {
     @GetMapping("/comments/{id}")
     public UserCommentsDTO getUserCommentsById(@PathVariable("id") String id) {
         return userService.getUserCommentsById(id);
+    }
+
+    @GetMapping("/following/{id}")
+    public UserFollowingDTO getUserFollowingById(@PathVariable("id") String id) {
+        return userService.getUserFollowingById(id);
     }
 
     @PostMapping("/")
