@@ -31,7 +31,7 @@ public class TweetController {
         return tweetService.getTweetsByUserId(id, pageable);
     }
 
-    @GetMapping("/comments/{id}")
+    @GetMapping("/{id}/comments")
     public TweetCommentsDTO getTweetCommentsById(@PathVariable("id") String id) {
         return tweetService.getTweetCommentsById(id);
     }
@@ -51,12 +51,12 @@ public class TweetController {
         tweetService.deleteTweetById(id);
     }
 
-    @PatchMapping("/like/{id}")
+    @PatchMapping("/{id}/like")
     public TweetDTO likeTweet(@PathVariable("id") String id) {
         return tweetService.likeTweet(id);
     }
 
-    @PatchMapping("/dislike/{id}")
+    @PatchMapping("/{id}/dislike")
     public TweetDTO dislikeTweet(@PathVariable("id") String id) {
         return tweetService.dislikeTweet(id);
     }

@@ -24,27 +24,27 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @GetMapping("/tweets/{id}")
+    @GetMapping("/{id}/tweets")
     public UserTweetsDTO getUserTweetsById(@PathVariable("id") String id) {
         return userService.getUserTweetsById(id);
     }
 
-    @GetMapping("/notifications/{id}")
+    @GetMapping("/{id}/notifications")
     public UserNotificationsDTO getUserNotificationsById(@PathVariable("id") String id) {
         return userService.getUserNotificationsById(id);
     }
 
-    @GetMapping("/comments/{id}")
+    @GetMapping("/{id}/comments")
     public UserCommentsDTO getUserCommentsById(@PathVariable("id") String id) {
         return userService.getUserCommentsById(id);
     }
 
-    @GetMapping("/following/{id}")
+    @GetMapping("/{id}/following")
     public UserFollowingDTO getUserFollowingById(@PathVariable("id") String id) {
         return userService.getUserFollowingById(id);
     }
 
-    @GetMapping("/followers/{id}")
+    @GetMapping("/{id}/followers")
     public UserFollowersDTO getUserFollowersById(@PathVariable("id") String id) {
         return userService.getUserFollowersById(id);
     }
