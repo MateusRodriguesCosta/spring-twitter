@@ -17,6 +17,8 @@ public interface UserMapper {
 
     UserCommentsDTO toUserCommentsDTO(UserEntity user);
 
+    UserMessagesDTO toUserMessagesDTO(UserEntity user);
+
     UserFollowingDTO toUserFollowingDTO(UserEntity user);
 
     UserFollowersDTO toUserFollowersDTO(UserEntity user);

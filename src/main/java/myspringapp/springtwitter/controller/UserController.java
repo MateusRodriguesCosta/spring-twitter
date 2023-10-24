@@ -34,6 +34,11 @@ public class UserController {
         return userService.getUserNotificationsById(id);
     }
 
+    @GetMapping("/{id}/messages")
+    public MessageDTO[] getUserMessagesById(@PathVariable("id") String id) {
+        return userService.getUserMessagesById(id);
+    }
+
     @GetMapping("/{id}/comments")
     public UserCommentsDTO getUserCommentsById(@PathVariable("id") String id) {
         return userService.getUserCommentsById(id);

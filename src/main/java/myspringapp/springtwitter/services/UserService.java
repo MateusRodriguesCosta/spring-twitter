@@ -33,6 +33,11 @@ public class UserService {
         return userMapper.toUserTweetsDTO(userEntity);
     }
 
+    public MessageDTO[] getUserMessagesById(String id) {
+        var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserMessagesDTO(userEntity).getMessages();
+    }
+
     public NotificationDTO[] getUserNotificationsById(String id) {
         var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return userMapper.toUserNotificationsDTO(userEntity).getNotifications();
