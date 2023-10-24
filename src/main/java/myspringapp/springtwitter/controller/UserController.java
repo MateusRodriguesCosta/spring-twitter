@@ -40,12 +40,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}/following")
-    public UserFollowingDTO getUserFollowingById(@PathVariable("id") String id) {
+    public UserDTO[] getUserFollowingById(@PathVariable("id") String id) {
         return userService.getUserFollowingById(id);
     }
 
     @GetMapping("/{id}/followers")
-    public UserFollowersDTO getUserFollowersById(@PathVariable("id") String id) {
+    public UserDTO[] getUserFollowersById(@PathVariable("id") String id) {
         return userService.getUserFollowersById(id);
     }
 

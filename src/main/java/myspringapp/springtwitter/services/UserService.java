@@ -43,14 +43,14 @@ public class UserService {
         return userMapper.toUserCommentsDTO(userEntity);
     }
 
-    public UserFollowingDTO getUserFollowingById(String id) {
+    public UserDTO[] getUserFollowingById(String id) {
         var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return userMapper.toUserFollowingDTO(userEntity);
+        return userMapper.toUserFollowingDTO(userEntity).getFollowing();
     }
 
-    public UserFollowersDTO getUserFollowersById(String id) {
+    public UserDTO[] getUserFollowersById(String id) {
         var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return userMapper.toUserFollowersDTO(userEntity);
+        return userMapper.toUserFollowersDTO(userEntity).getFollowers();
     }
 
     public void deleteUserById(String id) {
