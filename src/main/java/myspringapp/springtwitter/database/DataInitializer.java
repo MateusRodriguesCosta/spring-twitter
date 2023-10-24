@@ -54,7 +54,7 @@ public class DataInitializer {
             tweet.setUser(userList.get(i));
             tweet.setLikes(dataGenerator.generateRandomInt());
             tweet.setDate(dataGenerator.generateRandomDateString());
-            tweet.setValue(dataGenerator.generateRandomString());
+            tweet.setValue(dataGenerator.generateRandomString(80));
             tweet.setComments(new ArrayList<>());
 
             tweetList.add(tweetRepository.save(tweet));

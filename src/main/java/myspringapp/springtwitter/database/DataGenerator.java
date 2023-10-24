@@ -14,6 +14,10 @@ public class DataGenerator {
         return RandomStringUtils.randomAlphabetic(10);
     }
 
+    public String generateRandomString(int length) {
+        return RandomStringUtils.randomAlphabetic(length);
+    }
+
     public int generateRandomInt() {
         return RandomUtils.nextInt(18,60);
     }

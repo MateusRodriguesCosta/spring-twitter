@@ -19,8 +19,8 @@ public class TweetService {
 
     @Transactional
     public TweetDTO createTweet(TweetDTO tweet) {
-        tweetRepository.save(tweetMapper.toTweetEntity(tweet));
-        return tweet;
+        var tweetEntity = tweetRepository.save(tweetMapper.toTweetEntity(tweet));
+        return tweetMapper.toTweetDTO(tweetEntity);
     }
 
     public TweetDTO getTweetById(String id) {
