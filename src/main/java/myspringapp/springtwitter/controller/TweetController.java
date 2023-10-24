@@ -50,4 +50,14 @@ public class TweetController {
     public void deleteTweetById(@PathVariable("id") String id) {
         tweetService.deleteTweetById(id);
     }
+
+    @PatchMapping("/like/{id}")
+    public TweetDTO likeTweet(@PathVariable("id") String id) {
+        return tweetService.likeTweet(id);
+    }
+
+    @PatchMapping("/dislike/{id}")
+    public TweetDTO dislikeTweet(@PathVariable("id") String id) {
+        return tweetService.dislikeTweet(id);
+    }
 }

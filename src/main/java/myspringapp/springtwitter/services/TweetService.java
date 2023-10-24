@@ -32,6 +32,20 @@ public class TweetService {
         tweetRepository.deleteById(id);
     }
 
+    public TweetDTO likeTweet(String id) {
+        var tweetEntity = tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet not found"));
+        tweetEntity.setLikes(tweetEntity.getLikes() + 1);
+        tweetRepository.save(tweetEntity);
+        return tweetMapper.toTweetDTO(tweetEntity);
+    }
+
+    public TweetDTO dislikeTweet(String id) {
+        var tweetEntity = tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet not found"));
+        tweetEntity.setLikes(tweetEntity.getLikes() - 1);
+        tweetRepository.save(tweetEntity);
+        return tweetMapper.toTweetDTO(tweetEntity);
+    }
+
     public List<TweetDTO> getAllTweets() {
         var tweetsEntity = tweetRepository.findAll();
         return tweetMapper.toTweetDTO(tweetsEntity);
