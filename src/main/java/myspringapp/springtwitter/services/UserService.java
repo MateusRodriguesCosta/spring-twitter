@@ -48,6 +48,11 @@ public class UserService {
         return userMapper.toUserFollowingDTO(userEntity);
     }
 
+    public UserFollowersDTO getUserFollowersById(String id) {
+        var userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserFollowersDTO(userEntity);
+    }
+
     public void deleteUserById(String id) {
         userRepository.deleteById(id);
     }

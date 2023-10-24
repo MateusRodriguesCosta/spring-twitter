@@ -19,6 +19,8 @@ public interface UserMapper {
 
     UserFollowingDTO toUserFollowingDTO(UserEntity user);
 
+    UserFollowersDTO toUserFollowersDTO(UserEntity user);
+
     UserEntity toUserEntity(UserDTO user);
 
     UserDTO toUserDTO(UserEntity user);

@@ -46,4 +46,11 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "following_id"))
     private List<UserEntity> following;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "followers",
+            joinColumns = @JoinColumn(name = "user_followers_id"),
+            inverseJoinColumns = @JoinColumn(name = "followers_id"))
+    private List<UserEntity> followers;
+
 }

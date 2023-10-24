@@ -44,6 +44,11 @@ public class UserController {
         return userService.getUserFollowingById(id);
     }
 
+    @GetMapping("/followers/{id}")
+    public UserFollowersDTO getUserFollowersById(@PathVariable("id") String id) {
+        return userService.getUserFollowersById(id);
+    }
+
     @PostMapping("/")
     public UserDTO createUser(@RequestBody UserDTO user) {
         return userService.createUser(user);
