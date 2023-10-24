@@ -1,9 +1,7 @@
 package myspringapp.springtwitter.database;
 
-import myspringapp.springtwitter.entities.CommentEntity;
-import myspringapp.springtwitter.entities.NotificationEntity;
-import myspringapp.springtwitter.entities.TweetEntity;
-import myspringapp.springtwitter.entities.UserEntity;
+import myspringapp.springtwitter.dto.MessageDTO;
+import myspringapp.springtwitter.entities.*;
 import myspringapp.springtwitter.repositories.CommentRepository;
 import myspringapp.springtwitter.repositories.NotificationRepository;
 import myspringapp.springtwitter.repositories.TweetRepository;
@@ -103,6 +101,29 @@ public class DataInitializer {
             userFollowed.setFollowing(followingList);
             userRepository.save(userFollowed);
 
+        }
+    }
+
+    public void initializeMessages() {
+        for (int i = 0; i < 10; i++) {
+            UserEntity user = userList.get(i);
+            var messages = new ArrayList<MessageEntity>();
+            for (int j = 0; j < 10; j++) {
+                if (i != j) {
+                    var message = new MessageEntity();
+                    message.setValue(dataGenerator.generateRandomString());
+                    message.setDateTime(dataGenerator.generateRandomDateString());
+                    if(dataGenerator.generateRandomInt() % 2 == 0) {
+                        message.setFrom(user);
+                        message.setTo(userList.get(j));
+                    } else {
+                        message.setFrom(userList.get(j));
+                        message.setTo(user);
+                    }
+                }
+            }
+            user.setMessages(messages);
+            userRepository.save(user);
         }
     }
 }
