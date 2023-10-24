@@ -15,19 +15,19 @@ public class NotificationController {
 
     private NotificationService notificationService;
 
-//    @GetMapping("/")
-//    public List<NotificationDTO> getAllNotificationsByUserId(String id, Pageable pageable) {
-//        return notificationService.getAllNotificationsByUserId(id, pageable);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public NotificationDTO getNotificationById(@PathVariable String id) {
-//        return notificationService.getNotificationById(id);
-//    }
+    @GetMapping("/user/{id}")
+    public List<NotificationDTO> getAllNotificationsByUserId(@PathVariable String id, Pageable pageable) {
+        return notificationService.getAllNotificationsByUserId(id, pageable);
+    }
+
+    @GetMapping("/{id}")
+    public NotificationDTO getNotificationById(@PathVariable String id) {
+        return notificationService.getNotificationById(id);
+    }
 
     @PostMapping("/")
-    public void createNotification(@RequestBody NotificationDTO notification) {
-        notificationService.createNotification(notification);
+    public NotificationDTO createNotification(@RequestBody NotificationDTO notification) {
+        return notificationService.createNotification(notification);
     }
 
     @DeleteMapping("/{id}")

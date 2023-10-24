@@ -42,6 +42,10 @@ public class DataInitializer {
             user.setEmail(dataGenerator.generateRandomString() + "@gmail.com");
             user.setPassword(dataGenerator.generateRandomString());
             user.setAddress(dataGenerator.generateRandomString());
+            user.setPhone(dataGenerator.generateRandomString());
+            user.setBio(dataGenerator.generateRandomString(80));
+            user.setJoinedDate(dataGenerator.generateRandomDateString());
+            user.setVerifiedAccount(dataGenerator.generateRandomInt() % 2 == 0);
             user.setTweets(new ArrayList<>());
 
             userList.add(userRepository.save(user));

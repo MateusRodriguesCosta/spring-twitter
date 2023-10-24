@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/notifications")
-    public UserNotificationsDTO getUserNotificationsById(@PathVariable("id") String id) {
+    public NotificationDTO[] getUserNotificationsById(@PathVariable("id") String id) {
         return userService.getUserNotificationsById(id);
     }
 

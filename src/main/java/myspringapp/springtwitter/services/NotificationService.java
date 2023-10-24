@@ -19,8 +19,9 @@ public class NotificationService {
     private final NotificationMapper notificationMapper;
 
     @Transactional
-    public void createNotification(NotificationDTO notification) {
-        notificationRepository.save(notificationMapper.toNotificationEntity(notification));
+    public NotificationDTO createNotification(NotificationDTO notification) {
+        var notificationEntity = notificationRepository.save(notificationMapper.toNotificationEntity(notification));
+        return notificationMapper.toNotificationDTO(notificationEntity);
     }
 
     public NotificationDTO getNotificationById(String id) {

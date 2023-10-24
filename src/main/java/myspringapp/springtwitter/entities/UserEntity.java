@@ -30,6 +30,18 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "bio")
+    private String bio;
+
+    @Column(name = "joinedDate")
+    private String joinedDate;
+
+    @Column(name = "verifiedAccount")
+    private boolean verifiedAccount;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<TweetEntity> tweets;
 
