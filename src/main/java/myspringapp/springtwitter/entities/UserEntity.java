@@ -51,7 +51,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<NotificationEntity> notifications;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "from", fetch = FetchType.EAGER)
     private List<MessageEntity> messages;
 
     @ManyToMany(fetch = FetchType.EAGER)
