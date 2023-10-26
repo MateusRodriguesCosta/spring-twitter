@@ -2,10 +2,7 @@ package myspringapp.springtwitter.database;
 
 import myspringapp.springtwitter.dto.MessageDTO;
 import myspringapp.springtwitter.entities.*;
-import myspringapp.springtwitter.repositories.CommentRepository;
-import myspringapp.springtwitter.repositories.NotificationRepository;
-import myspringapp.springtwitter.repositories.TweetRepository;
-import myspringapp.springtwitter.repositories.UserRepository;
+import myspringapp.springtwitter.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +25,9 @@ public class DataInitializer {
 
     @Autowired
     private NotificationRepository notificationRepository;
+
+    @Autowired
+    private MessageRepository messageRepository;
 
     private ArrayList<UserEntity> userList = new ArrayList<>();
     private ArrayList<TweetEntity> tweetList = new ArrayList<>();
@@ -120,6 +120,7 @@ public class DataInitializer {
                         message.setFrom(userList.get(j));
                         message.setTo(user);
                     }
+                    messageRepository.save(message);
                 }
             }
             user.setMessages(messages);
